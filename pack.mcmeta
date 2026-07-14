@@ -1,0 +1,6 @@
+{
+  "pack": {
+    "pack_format": 15,
+    "description": "[ZenShader] — Balanced high-performance shader pack. Soft shadows, wave water, subtle specular, bloom. Optimized for 120 FPS at render distance 12-16."
+  }
+}
