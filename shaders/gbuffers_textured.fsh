@@ -4,24 +4,24 @@
    GLSL 120 | [ZenShader]
 */
 
-varying vec4 v_Color;
-varying vec3 v_Normal;
-varying vec2 v_TexCoord;
-varying vec3 v_WorldPos;
-varying vec2 v_LightCoord;
+varying vec4 vColor;
+varying vec3 vNormal;
+varying vec2 vTexCoord;
+varying vec3 vWorldPos;
+varying vec2 vLightCoord;
 
 uniform sampler2D texture;
 uniform sampler2D lightmap;
 
 void main() {
-	vec4 texColor = texture2D(texture, v_TexCoord);
-	vec3 light = texture2D(lightmap, v_LightCoord).rgb;
+	vec4 texCol = texture2D(texture, vTexCoord);
+	vec3 lightCol = texture2D(lightmap, vLightCoord).rgb;
 	
-	vec3 diffuse = texColor.rgb * v_Color.rgb * light;
-	vec3 normal = normalize(v_Normal) * 0.5 + 0.5;
+	vec3 diffuseCol = texCol.rgb * vColor.rgb * lightCol;
+	vec3 normalCol = normalize(vNormal) * 0.5 + 0.5;
 	
-	gl_FragData[0] = vec4(diffuse, texColor.a);
-	gl_FragData[1] = vec4(normal, 0.1);
+	gl_FragData[0] = vec4(diffuseCol, texCol.a);
+	gl_FragData[1] = vec4(normalCol, 0.1);
 	gl_FragData[2] = vec4(0.8, 1.0, 0.0, 1.0);
 	gl_FragData[3] = vec4(0.0, 0.0, 0.0, 0.0);
 }
